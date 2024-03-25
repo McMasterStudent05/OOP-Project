@@ -177,7 +177,7 @@ int main()
 
 
 		{
-			cout << "Enter option:" << endl << "1: 7 Day Forecast" << endl << "2: Hourly Forecast" << endl;
+			cout << "Enter option:" << endl << "1: 7 Day Forecast" << endl << "2: Hourly Forecast" << endl; //u.i stuff for forecasts
 			cin >> choice;
 
 			if (choice == 1) {
