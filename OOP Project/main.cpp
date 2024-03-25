@@ -9,7 +9,7 @@ int main()
 	string* climate;
 	bool isOceania = false;
 
-	void PrintCountries(int x) {
+	void PrintCountries(int x) { //used for printing out the u.i telling the user to select the listed countries.
 
 		if (x == 1) {
 			cout << "Enter Country (Canada, USA, Mexico, CentralAmerica, Artic)" << endl;
@@ -61,7 +61,7 @@ int main()
 		}
 	}
 
-	string findSeason(int m) {
+	string findSeason(int m) { //Finding and returning the current season
 		if (m <= 2 || m > 11) {
 			return "Winter";
 		}
@@ -78,7 +78,7 @@ int main()
 	}
 
 
-	class Climate {
+	class Climate { //used for determining the climate
 	protected:
 		double rainfall;
 		double wind;
@@ -102,7 +102,7 @@ int main()
 		reverse = false;
 	}
 
-	class Tropical : public Climate {
+	class Tropical : public Climate { //tropical: a type of climate
 	public:
 		Tropical(string y);
 		void Print();
@@ -124,7 +124,7 @@ int main()
 	};
 
 
-	class Location {
+	class Location { //used for finding the location and relevant weather
 		int continent;
 		string country;
 	public:
@@ -142,7 +142,7 @@ int main()
 		cout << "Forecast";
 	}
 
-	int main() {
+	int main() { //the actual main function
 
 		bool a = true;
 		int contChoice = 0;
@@ -154,12 +154,12 @@ int main()
 		string x = *climate;
 
 		{
-			cout << "Enter Month (1-12)" << endl;
+			cout << "Enter Month (1-12)" << endl; //more u.i stuff
 			cin >> month;
 			cout << "Enter Day (1-31)" << endl;
 			cin >> day;
 
-			string season = findSeason(month);
+			string season = findSeason(month); //u.i find season
 
 			cout << "Enter Location" << endl << " 1-North America" << endl;
 			cin >> contChoice;
