@@ -1,5 +1,5 @@
 #include <iostream> //main.cpp and print functions: eb
-using namespace std; //testing12345
+using namespace std;
 
 int main()
 {
