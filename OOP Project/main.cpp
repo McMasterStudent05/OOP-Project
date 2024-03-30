@@ -32,7 +32,7 @@ int main()
 		}
 	}
 
-	string NorthAmericanCountry(int c, string & climate, string s) {
+	string NorthAmericanCountry(int c, string & climate, string s) { //categorizing northamerican countries and returning country values depending on groups of countries
 		string country;
 		PrintCountries(c);
 		cin >> country;
@@ -118,10 +118,21 @@ int main()
 			reverse = isOceania;
 	}
 
-	class Polar : public Climate {
-
-
+	class Polar : public Climate { //another type of climate
+	public:
+		Tropical(string x);
+		void Print();
 	};
+
+	Polar::Polar(string y) {
+		season = y;
+		rainfall =
+			wind =
+			temperature =
+			clouds =
+			humidity =
+			reverse = isOceania;
+	}
 
 
 	class Location { //used for finding the location and relevant weather
