@@ -88,7 +88,7 @@ int main()
 		string season;
 		bool reverse;
 	public:
-		Climate();
+		Climate(double rainfall, double wind, double temperature, double clouds, double humidity, bool reverse);
 
 		void virtual Print() = 0;
 	};
