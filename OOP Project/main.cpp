@@ -120,12 +120,12 @@ int main()
 
 	class Polar : public Climate { //another type of climate
 	public:
-		Tropical(string x);
+		Polar(string x);
 		void Print();
 	};
 
-	Polar::Polar(string y) {
-		season = y;
+	Polar::Polar(string x) {
+		season = x;
 		rainfall =
 			wind =
 			temperature =
