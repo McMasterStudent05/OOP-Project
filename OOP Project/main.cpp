@@ -1,204 +1,229 @@
-#include <iostream> //main.cpp and print functions: eb
+#include <iostream>
+#include <fstream>
 using namespace std;
 
-int main()
-{
-#include <iostream>
-	using namespace std;
+string* climate;
+bool isOceania = false;
 
-	string* climate;
-	bool isOceania = false;
+void PrintCountries(int x) {
 
-	void PrintCountries(int x) { //used for printing out the u.i telling the user to select the listed countries.
+	if (x == 1) {
+		cout << "Enter Country (Canada, USA, Mexico, CentralAmerica, Artic)" << endl;
+	}
+	else if (x == 2) {
+		cout << "Enter Country (Brazil, Argentina, Chile, Equador)" << endl;
+	}
+	else if (x == 3) {
+		cout << "Enter Region (NorthernEurope, Mediterranian, Siberia)" << endl;
+	}
+	else if (x == 4) {
+		cout << "Enter Region (NorthEastAsia, SouthAsia, MiddleEast)" << endl;
+	}
+	else if (x == 5) {
+		cout << "Enter Region (NorthAfrica, CentralAfrica, EquatorialAfrica, SouthernAfrica)" << endl;
+	}
+	else if (x == 6) {
+		cout << "Enter Region (Australia, NewZealand, PacificIslands, Indonesia)" << endl;
+		isOceania = true;
+	}
+}
 
-		if (x == 1) {
-			cout << "Enter Country (Canada, USA, Mexico, CentralAmerica, Artic)" << endl;
-		}
-		else if (x == 2) {
-			cout << "Enter Country (Brazil, Argentina, Chile, Equador)" << endl;
-		}
-		else if (x == 3) {
-			cout << "Enter Region (NorthernEurope, Mediterranian, Siberia)" << endl;
-		}
-		else if (x == 4) {
-			cout << "Enter Region (NorthEastAsia, SouthAsia, MiddleEast)" << endl;
-		}
-		else if (x == 5) {
-			cout << "Enter Region (NorthAfrica, CentralAfrica, EquatorialAfrica, SouthernAfrica)" << endl;
-		}
-		else if (x == 6) {
-			cout << "Enter Region (Australia, NewZealand, PacificIslands, Indonesia)" << endl;
-			isOceania = true;
-		}
+string NorthAmericanCountry(int c, string& climate, string s) {
+	string country;
+	PrintCountries(c);
+	cin >> country;
+
+	if (country == "Siberia" || country == "Artic") {
+		return country;
+		climate = "Polar";
+	}
+	else if (country == "Canada" || country == "USA" || country == "NorthernEurope" || country == "Chile" || country == "SouthernAfrica" || country == "NewZealand" || country == "NorthEastAsia") {
+		return country;
+		climate = "Temperate";
+	}
+	else if (country == "Mexico" || country == "Argentina" || country == "NorthAfrica" || country == "Australia" || country == "MiddleEast" || country == "Mediterranian") {
+		return country;
+		climate = "SubTropical";
+	}
+	else if (country == "CentralAmerica" || country == "Brazil" || country == "CentralAfrica" || country == "PacificIslands" || country == "SouthAsia") {
+		return country;
+		climate = "Tropical";
+	}
+	else if (country == "Ecuador" || country == "EquatorialAfrica" || country == "Indonesia") {
+		return country;
+		climate = "Equatorial";
+	}
+}
+
+string findSeason(int m) {
+	if (m <= 2 || m > 11) {
+		return "Winter";
+	}
+	else if (m > 2 && m <= 5) {
+		return "Spring";
+	}
+	else if (m > 5 && m <= 8) {
+		return "Summer";
+	}
+	else if (m > 8 && m <= 11) {
+		return "Fall";
+	}
+	//need a statement for invalid month option
+}
+
+class Climate {
+protected:
+	double rainfall;
+	double snowfall;
+	double wind;
+	double temperature;
+	double clouds;
+	double humidity;
+	bool reverse;
+public:
+	Climate();
+	Climate(double, double, double, double, double, double);
+
+	void Print();
+};
+
+Climate::Climate() {
+	rainfall = 0.0;
+	snowfall = 0.0;
+	wind = 0.0;
+	temperature = 0.0;
+	clouds = 0.0;
+	humidity = 0.0;
+	reverse = false;
+}
+
+Climate::Climate(double a, double b, double c, double d, double e, double f) {
+	rainfall = a;
+	snowfall = b;
+	wind = c;
+	temperature = d;
+	clouds = e;
+	humidity = f;
+	reverse = false;
+}
+
+class Location {
+private:
+	int continent;
+	string country;
+public:
+	Location();
+	void setContinent(int a) { continent = a; }
+	void setCountry(string c) { country = c; }
+	int getContinent() { return continent; }
+
+};
+
+Location::Location() {
+	continent = 0;
+}
+
+void WeekForecast() {
+	cout << "Forecast";
+}
+
+Climate createObj(string SeasonType, string ClimateType) {
+
+	fstream readfile;
+	double Array[6][5];
+
+	if (!readfile.is_open()) {
+		cout << "File cant be read" << endl;
+
+		Climate empty;
+		return empty;
 	}
 
-	string NorthAmericanCountry(int c, string & climate, string s) { //categorizing northamerican countries and returning country values depending on groups of countries
-		string country;
-		PrintCountries(c);
-		cin >> country;
+	else if (readfile.is_open()) {
 
-		if (country == "Siberia" || country == "Artic") {
-			return country;
-			climate = "Polar";
-			Polar obj1;
+
+		if (SeasonType == "Winter") {
+
+			readfile.open("Winter.txt");
 		}
-		else if (country == "Canada" || country == "USA" || country == "NorthernEurope" || country == "Chile" || country == "SouthernAfrica" || country == "NewZealand") {
-			return country;
-			climate = "Temperate";
+		else if (SeasonType == "Fall") {
+
+			readfile.open("Fall.txt");
 		}
-		else if (country == "Mexico" || country == "Argentina" || country == "NorthernAfrica" || country == "Australia") {
-			return country;
-			climate = "SubTropical";
+
+		int a = 0, b = 0;
+
+		while (readfile >> Array[a][b]) {
+
+			if (a == 5) {
+				b++;
+				a = 0;
+			}
+
+			a++;
 		}
-		else if (country == "CentralAmerica" || country == "Brazil" || country == "CentralAfrica" || country == "PacificIslands") {
-			return country;
-			climate = "Tropical";
-			Tropical obj1(s);
-		}
-		else if (country == "Ecuador" || country == "EquatorialAfrica" || country == "Indonesia") {
-			return country;
-			climate = "Equatorial";
-		}
-	}
 
-	string findSeason(int m) { //Finding and returning the current season
-		if (m <= 2 || m > 11) {
-			return "Winter";
-		}
-		else if (m > 2 || m <= 5) {
-			return "Spring";
-		}
-		else if (m > 5 || m <= 8) {
-			return "Summer";
-		}
-		else if (m > 8 || m <= 11) {
-			return "Fall";
-		}
-		//need a statement for invalid month option
-	}
-
-
-	class Climate { //used for determining the climate
-	protected:
-		double rainfall;
-		double wind;
-		double temperature;
-		double clouds;
-		double humidity;
-		string season;
-		bool reverse;
-	public:
-		Climate(double rainfall, double wind, double temperature, double clouds, double humidity, bool reverse);
-
-		void virtual Print() = 0;
-	};
-
-	Climate::Climate() {
-		rainfall = 0.0;
-		wind = 0.0;
-		temperature = 0.0;
-		clouds = 0.0;
-		humidity = 0.0;
-		reverse = false;
-	}
-
-	class Tropical : public Climate { //tropical: a type of climate
-	public:
-		Tropical(string y);
-		void Print();
-	};
-
-	Tropical::Tropical(string y) {
-		season = y;
-		rainfall =
-			wind =
-			temperature =
-			clouds =
-			humidity =
-			reverse = isOceania;
-	}
-
-	class Polar : public Climate { //another type of climate
-	public:
-		Polar(string x);
-		void Print();
-	};
-
-	Polar::Polar(string x) {
-		season = x;
-		rainfall =
-			wind =
-			temperature =
-			clouds =
-			humidity =
-			reverse = isOceania;
-	}
-
-
-	class Location { //used for finding the location and relevant weather
-		int continent;
-		string country;
-	public:
-		Location() { continent = 0; }
-		void setContinent(int a) { continent = a; }
-		void setCountry(string c) { country = c; }
-		int getContinent() { return continent; }
-
-	};
-
-
-
-
-	void WeekForecast() {
-		cout << "Forecast";
-	}
-
-	int main() { //the actual main function
-
-		bool a = true;
-		int contChoice = 0;
-		int month;
-		int day;
-
-		Location obj;
-
-		string x = *climate;
-
-		{
-			cout << "Enter Month (1-12)" << endl; //more u.i stuff
-			cin >> month;
-			cout << "Enter Day (1-31)" << endl;
-			cin >> day;
-
-			string season = findSeason(month); //u.i find season
-
-			cout << "Enter Location" << endl << " 1-North America" << endl;
-			cin >> contChoice;
-			obj.setContinent(contChoice);
-
-			int y = obj.getContinent();
-			string country = NorthAmericanCountry(y, *climate, season);
-			obj.setCountry(country);
-
-
-
-		} while (a)
-
-
-
-
-		{
-			cout << "Enter option:" << endl << "1: 7 Day Forecast" << endl << "2: Hourly Forecast" << endl; //u.i stuff for forecasts
-			cin >> choice;
-
-			if (choice == 1) {
-				WeekForecast();
+		double Array2[6];
+		for (int c = 0; c < 5; c++) {
+			if (ClimateType == "Polar") {
+				Array2[c] = Array[0][c];
+			}
+			else if (ClimateType == "Temperate") {
+				Array2[c] = Array[1][c];
 			}
 
 
-		}while (a)
 
+		}
 
+		Climate Obj(Array2[0], Array2[1], Array2[2], Array2[3], Array2[4], Array2[5]);
+		return Obj;
 	}
+}
+
+int main() {
+
+	bool a = true;
+	int contChoice = 0;
+	int month;
+	int day;
+	int choice;
+
+	Location obj;
+
+	string climate;
+
+
+	cout << "Enter Month (1-12)" << endl;
+	cin >> month;
+	cout << "Enter Day (1-31)" << endl;
+	cin >> day;
+
+	string season = findSeason(month);
+
+	cout << "Enter Location" << endl << " 1-North America" << endl;
+	cin >> contChoice;
+	obj.setContinent(contChoice);
+
+	int y = obj.getContinent();
+	string country = NorthAmericanCountry(y, climate, season);
+	obj.setCountry(country);
+
+	Climate obj1 = createObj(season, climate);
+
+
+
+	cout << endl << endl;
+
+	cout << "Enter option:" << endl << "1: 7 Day Forecast" << endl << "2: Hourly Forecast" << endl;
+	cin >> choice;
+
+	if (choice == 1) {
+		WeekForecast();
+	}
+
+
+
+
 
 }
