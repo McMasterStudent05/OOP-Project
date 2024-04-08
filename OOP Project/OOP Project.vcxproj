@@ -127,19 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Extreme.h" />
-    <ClInclude Include="Rainy.h" />
-    <ClInclude Include="Rare.h" />
-    <ClInclude Include="Stormy.h" />
-    <ClInclude Include="Weather.h" />
+    <ClInclude Include="Climate.h" />
+    <ClInclude Include="Location.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Extreme.cpp" />
+    <ClCompile Include="Climate.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Rainy.cpp" />
-    <ClCompile Include="Rare.cpp" />
-    <ClCompile Include="Stormy.cpp" />
-    <ClCompile Include="Weather.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Spring.txt" />
+    <Text Include="Summer.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

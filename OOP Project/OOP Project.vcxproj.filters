@@ -15,40 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Weather.h">
+    <ClInclude Include="Climate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Stormy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rainy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Extreme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rare.h">
+    <ClInclude Include="Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Weather.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stormy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rainy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Extreme.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rare.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Climate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Spring.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Summer.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
